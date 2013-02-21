@@ -6,8 +6,8 @@ require 'json'
 
 class LightsApp
 
-  def initialize(name, api_url)
-    @name = name
+  def initialize(app_name, api_url)
+    @name = app_name
     @key = Digest::MD5.hexdigest(@name)
     @api_endpoint = "http://#{api_url}/api"
   end
@@ -63,7 +63,7 @@ if $0 == __FILE__
   #ap app.status front_left
 
   # flash the lights red and green
-  while true
+  loop do
     app.set_light(front_left,  :hue => 25000, :sat => 254)
     app.set_light(front_right, :hue => 25000, :sat => 254)
     app.set_light(back_right,  :ct  => 500,   :bri => 254)
