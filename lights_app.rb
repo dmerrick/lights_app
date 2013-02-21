@@ -26,7 +26,7 @@ class LightsApp
 
   # query all lights
   def overview
-    HTTParty.get(@api_endpoint + "/" + @key)
+    HTTParty.get("#{@api_endpoint}/#{@key}")
   end
 
   # query a single light
@@ -49,7 +49,8 @@ if $0 == __FILE__
   front_left  = 3
 
   require 'awesome_print'
-  ap app.status front_left
+  ap app.overview
+  #ap app.status front_left
 end
 
 
