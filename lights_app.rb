@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'httparty'
 require 'digest/md5'
 require 'json'
