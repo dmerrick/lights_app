@@ -37,14 +37,19 @@ class LightsApp
 end
 
 if $0 == __FILE__
+  # put your customizations here
   app = LightsApp.new("lightsapp", "192.168.1.14")
+
+  # I've commented this out because I already registered
   #app.register!
 
+  # human-readable ids
   front_right = 1
   back_right  = 2
   front_left  = 3
 
-  puts app.status front_left
+  require 'awesome_print'
+  ap app.status front_left
 end
 
 
