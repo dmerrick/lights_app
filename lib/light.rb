@@ -106,7 +106,7 @@ class Light
   def to_s
     pretty_name = @name.to_s.split(/_/).map(&:capitalize).join(" ")
     on_or_off = on? ? "on" : "off"
-    reachable = reachable? ? "reachable" : "not reachable"
+    reachable = reachable? ? "reachable" : "unreachable"
     "#{pretty_name} is #{on_or_off} and #{reachable}"
   end
 end
