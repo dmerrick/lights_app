@@ -50,7 +50,6 @@ class Light
   end
 
   # returns the current colormode
-  # n.b. colormode= doesnt seem to work
   def colormode
     state["colormode"]
   end
