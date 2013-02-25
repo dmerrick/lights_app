@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'awesome_print'
-require './phillipshue'
+require './phillips_hue'
 
 
 # put your customizations here
@@ -23,7 +23,6 @@ puts front_right
 
 # change this to loop pretty colors
 looping = true
-# flash the lights red and green
 loop do
 
   front_left.red
