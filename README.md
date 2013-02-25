@@ -36,6 +36,40 @@ Full example:
   # etc.
 ```
 
+### Getting the State of a Light
+
+There are many available status options in the `Light` class.
+
+```ruby
+  puts front_right.state # returns JSON
+  puts front_right.colormode
+  puts front_right.xy
+  puts front_right
+  # => "Front Right is on and reachable"
+```
+
+
+### Changing the State of a Light
+
+To change the state of a light, simply modify the value of one of the state parameters. For example:
+
+```ruby
+  front_right.xy  = [0.6446, 0.3289]
+  front_right.ct  = 200   # note that the colormode changes
+  front_right.hue = 25000 # colormode changes again
+  # etc.
+```
+
+#### Default Colors
+
+Some default color methods are provided, for example:
+
+```ruby
+  front_right.blue
+  back_right.red
+  front_left.green
+```
+
 
 ### See Also
 * [http://rsmck.co.uk/hue](http://rsmck.co.uk/hue)
