@@ -41,20 +41,3 @@ loop do
   sleep 1
 
 end if looping
-
-
-
-
-__END__
-# api_url can be found at:
-# https://www.meethue.com/en-US/user/preferencessmartbridge
-
-# extra details about hacking Hues:
-# http://rsmck.co.uk/hue
-
-# register worked response:
-# => [{"success"=>{"username"=>"5a90e47a2ac90131ace46cce377bdc64"}}]
-
-# register failed response (press link button):
-# => [{"error"=>
-#     {"address"=>"", "type"=>101, "description"=>"link button not pressed"}}]
