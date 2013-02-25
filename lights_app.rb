@@ -1,80 +1,52 @@
 #!/usr/bin/env ruby
 
-require 'httparty'
-require 'digest/md5'
-require 'json'
+require 'awesome_print'
+require './phillipshue'
 
-class LightsApp
 
-  def initialize(app_name, api_url)
-    @name = app_name
-    @key = Digest::MD5.hexdigest(@name)
-    @api_endpoint = "http://#{api_url}/api"
-  end
+# put your customizations here
+hue = PhillipsHue.new("lightsapp", "192.168.1.14")
 
-  def register!
-    puts "Press the link button on the Hue..."
-    sleep 10
-    json_body = {:username => @key, :devicetype => @name}.to_json
-    response = HTTParty.post(@api_endpoint, :body => json_body)
+# register the script with the Hue
+#app.register!
 
-    if response.first["error"] # should be response.code
-      puts "Press link button and try again."
-      exit
-    else
-      return response
-    end
-  end
+# assign in order by their light_id
+front_right = hue.add_light(:front_right)
+back_right  = hue.add_light(:back_right)
+front_left  = hue.add_light(:front_left)
 
-  # query all lights
-  def overview
-    request_uri = "#{@api_endpoint}/#{@key}"
-    HTTParty.get(request_uri)
-  end
+#ap hue.overview
+#ap hue.status front_right
+#ap front_right.state
+#puts front_right.colormode
+puts front_right
 
-  # query a single light
-  def status(light_id)
-    request_uri = "#{@api_endpoint}/#{@key}/lights/#{light_id}"
-    HTTParty.get(request_uri)
-  end
+# change this to loop pretty colors
+looping = true
+# flash the lights red and green
+loop do
 
-  def set_light(light_id, options)
-    json_body = options.to_json
-    request_uri = "#{@api_endpoint}/#{@key}/lights/#{light_id}/state"
-    HTTParty.put(request_uri, :body => json_body)
-  end
+  front_left.red
+  front_right.green
+  back_right.blue
 
-end
+  sleep 1
 
-if $0 == __FILE__
-  # put your customizations here
-  app = LightsApp.new("lightsapp", "192.168.1.14")
+  front_left.blue
+  front_right.blue
+  back_right.yellow
 
-  # register the script with the Hue
-  #app.register!
+  sleep 1
 
-  # human-readable ids
-  front_right = 1
-  back_right  = 2
-  front_left  = 3
+  front_left.yellow
+  front_right.red
+  back_right.red
 
-  #require 'awesome_print'
-  #ap app.overview
-  #ap app.status front_left
+  sleep 1
 
-  # flash the lights red and green
-  loop do
-    app.set_light(front_left,  :hue => 25000, :sat => 254)
-    app.set_light(front_right, :hue => 25000, :sat => 254)
-    app.set_light(back_right,  :ct  => 500,   :bri => 254)
-    sleep 1
-    app.set_light(front_left,  :ct  => 500,   :bri => 254)
-    app.set_light(front_right, :ct  => 500,   :bri => 254)
-    app.set_light(back_right,  :hue => 25000, :sat => 254)
-    sleep 1
-  end
+end if looping
 
-end
+
 
 
 __END__
