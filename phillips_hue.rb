@@ -6,6 +6,9 @@ require "./lib/light"
 
 class PhillipsHue
 
+  # creates a new app to talk to a Phillips Hue
+  #   app_name is used to register with the Hue
+  #   api_url is the hostname/IP address of the Hue hockeypuck
   def initialize(app_name, api_url)
     @name = app_name
     @key = Digest::MD5.hexdigest(@name)
@@ -15,12 +18,13 @@ class PhillipsHue
     @light_id = 0
   end
 
-  # query all lights
+  # returns overall system status as JSON
   def overview
     request_uri = "#{@api_endpoint}/#{@key}"
     HTTParty.get(request_uri)
   end
 
+  # creates a new Light object using auto-incrementing light_id
   def add_light(light_name)
     @light_id += 1
     Light.new(light_name, @light_id, @api_endpoint, @key)
@@ -28,6 +32,8 @@ class PhillipsHue
 
   #TODO: status(light_id) could be cool here
 
+  # registers your app with the Hue
+  # this must be run for every unique app name
   # FIXME: this needs to be more adequately tested
   def register!
     puts "Press the link button on the Hue..."
