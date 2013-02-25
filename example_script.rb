@@ -1,14 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'awesome_print'
 require './phillips_hue'
-
+require 'awesome_print'
 
 # put your customizations here
 hue = PhillipsHue.new("lightsapp", "192.168.1.14")
-
-# register the script with the Hue
-#app.register!
+#hue.register!
 
 # assign in order by their light_id
 front_right = hue.add_light(:front_right)
@@ -16,7 +13,6 @@ back_right  = hue.add_light(:back_right)
 front_left  = hue.add_light(:front_left)
 
 #ap hue.overview
-#ap hue.status front_right
 #ap front_right.state
 #puts front_right.colormode
 puts front_right
@@ -61,3 +57,4 @@ __END__
 # register failed response (press link button):
 # => [{"error"=>
 #     {"address"=>"", "type"=>101, "description"=>"link button not pressed"}}]
+
