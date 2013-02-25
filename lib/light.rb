@@ -146,21 +146,3 @@ class Light
     "#{pretty_name} is #{on_or_off} and #{reachable}"
   end
 end
-
-__END__
-example state() return value:
-{
-           "on" => true,
-          "bri" => 254,
-          "hue" => 12519,
-          "sat" => 225,
-           "xy" => [
-        [0] 0.5261,
-        [1] 0.4132
-    ],
-           "ct" => 497,
-        "alert" => "none",
-       "effect" => "none",
-    "colormode" => "ct",
-    "reachable" => true
-}

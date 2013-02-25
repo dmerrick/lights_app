@@ -51,11 +51,3 @@ class PhilipsHue
   end
 
 end
-
-__END__
-register worked response:
-# => [{"success"=>{"username"=>"5a90e47a2ac90131ace46cce377bdc64"}}]
-
-register failed response (press link button):
-# => [{"error"=>
-#     {"address"=>"", "type"=>101, "description"=>"link button not pressed"}}]
