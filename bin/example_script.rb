@@ -17,7 +17,7 @@ front_left  = hue.add_light(:front_left)
 #puts front_right.colormode
 puts front_right
 
-# change this to loop pretty colors
+# loop pretty colors
 looping = true
 loop do
 
@@ -57,4 +57,3 @@ __END__
 # register failed response (press link button):
 # => [{"error"=>
 #     {"address"=>"", "type"=>101, "description"=>"link button not pressed"}}]
-
