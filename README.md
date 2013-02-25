@@ -72,5 +72,7 @@ Some default color methods are provided, for example:
 
 
 ### See Also
-* [http://rsmck.co.uk/hue](http://rsmck.co.uk/hue)
-
+* [Official site](https://www.meethue.com/en-US)
+* [rsmck's hacking guide](http://rsmck.co.uk/hue)
+* Hue hackers' [community site](http://www.everyhue.com/)
+* Thorough [API docs](http://blog.ef.net/2012/11/02/philips-hue-api.html)
