@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
-
-require './philips_hue'
 require 'awesome_print'
+
+# requires ruby 1.9 or greater
+require_relative '../philips_hue'
 
 # put your customizations here
 hue = PhilipsHue.new("lightsapp", "192.168.1.14")

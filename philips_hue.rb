@@ -2,7 +2,8 @@ require 'httparty'
 require 'digest/md5'
 require 'json'
 
-require "./lib/light"
+# requires ruby 1.9 or greater
+require_relative "lib/light"
 
 class PhilipsHue
 
