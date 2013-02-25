@@ -7,7 +7,7 @@ class Light
     @key = key
   end
 
-  # query a single light
+  # query all info for single light
   def status
     request_uri = "#{@api_endpoint}/#{@key}/lights/#{@id}"
     HTTParty.get(request_uri)
