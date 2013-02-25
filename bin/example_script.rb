@@ -16,6 +16,8 @@ front_left  = hue.add_light(:front_left)
 #ap hue.overview
 #ap front_right.state
 #puts front_right.colormode
+#puts front_right.xy
+#front_right.xy = [0.6446, 0.3289]
 puts front_right
 
 # loop pretty colors
