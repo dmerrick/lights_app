@@ -26,8 +26,7 @@ class PhillipsHue
     Light.new(light_name, @light_id, @api_endpoint, @key)
   end
 
-  #TODO:
-  # status(light_id) of light could be cool here
+  #TODO: status(light_id) could be cool here
 
   # FIXME: this needs to be more adequately tested
   def register!
