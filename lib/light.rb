@@ -72,11 +72,20 @@ class Light
     state["xy"]
   end
 
+  # TODO: consider x() and y() setters/getters
   def xy=(value)
     set(:xy => value)
   end
 
-  # TODO: consider x() and y() setters/getters
+  #TODO: figure out what this does (and if I can change it)
+  def alert
+    state["alert"]
+  end
+
+  #TODO: figure out what this does (and if I can change it)
+  def effect
+    state["effect"]
+  end
 
   def red
     self.xy = [0.6446, 0.3289]
@@ -103,6 +112,7 @@ class Light
 end
 
 __END__
+example state() return value:
 {
            "on" => true,
           "bri" => 254,
