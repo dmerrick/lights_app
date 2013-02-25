@@ -28,12 +28,31 @@ class Light
     status["state"]
   end
 
+  #TODO: can this be set-able?
   def on?
     state["on"]
   end
 
+  # whether or not the lamp can be seen by the hub
   def reachable?
     state["reachable"]
+  end
+
+  # returns the current brightness value
+  # can be 0-254 (and 0 is NOT off)
+  def bri
+    state["bri"]
+  end
+
+  # sets the current brightness value
+  def bri=(value)
+    set(:bri => value)
+  end
+
+  # returns the current colormode
+  # n.b. colormode= doesnt seem to work
+  def colormode
+    state["colormode"]
   end
 
   # returns the current hue value
@@ -50,6 +69,7 @@ class Light
 
   # returns the current saturation value
   # used in tandem with "hue" to set the color
+  # can be 0-254
   def sat
     state["sat"]
   end
@@ -60,7 +80,7 @@ class Light
   end
 
   # returns the current color temperature (white only)
-  # 154 is the coolest, 500 is the warmest
+  # in mireds: 154 is the coolest, 500 is the warmest
   # c.p. http://en.wikipedia.org/wiki/Mired
   def ct
     state["ct"]
@@ -69,22 +89,6 @@ class Light
   # sets the current color temperature
   def ct=(value)
     set(:ct => value)
-  end
-
-  # returns the current brightness value
-  def bri
-    state["bri"]
-  end
-
-  # sets the current brightness value
-  def bri=(value)
-    set(:bri => value)
-  end
-
-  # returns the current colormode
-  # n.b. colormode= doesnt seem to work
-  def colormode
-    state["colormode"]
   end
 
   # returns the current xy value
