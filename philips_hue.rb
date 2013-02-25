@@ -4,9 +4,9 @@ require 'json'
 
 require "./lib/light"
 
-class PhillipsHue
+class PhilipsHue
 
-  # creates a new app to talk to a Phillips Hue
+  # creates a new app to talk to a Philips Hue
   #   app_name is used to register with the Hue
   #   api_url is the hostname/IP address of the Hue hockeypuck
   def initialize(app_name, api_url)

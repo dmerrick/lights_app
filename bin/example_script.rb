@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
-require './phillips_hue'
+require './philips_hue'
 require 'awesome_print'
 
 # put your customizations here
-hue = PhillipsHue.new("lightsapp", "192.168.1.14")
+hue = PhilipsHue.new("lightsapp", "192.168.1.14")
 #hue.register!
 
 # assign in order by their light_id
