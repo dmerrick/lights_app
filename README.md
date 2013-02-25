@@ -25,7 +25,7 @@ Full example:
 
 To add lights, you can use `PhilipsHue#add_light`.
 
-* You must specify a name for the light, which can be either a String or a Symbol. Example: `"living room table"`, `:front_right`, `"kitchen ceiling"`
+* You must specify a name for the light, which can be either a String or a Symbol. Example: `"living room table"`, `:front_right`, `"kitchen ceiling"`, etc.
 * You should add the lights in order by their ID. See the Hue Community site or the mobile app for the correct order.
  
 Full example:
