@@ -16,8 +16,8 @@ You need two things to connect with your Hue, a name for your app and the IP add
 
 Full example:
 ```ruby
-      hue = PhilipsHue.new("my light app", "192.168.1.14")
-      hue.register!
+  hue = PhilipsHue.new("my light app", "192.168.1.14")
+  hue.register!
 ```
 
 
@@ -30,11 +30,12 @@ To add lights, you can use `PhilipsHue#add_light`.
  
 Full example:
 ```ruby
-      front_right = hue.add_light(:front_right) # assumes light_id #1
-      back_right  = hue.add_light(:back_right)  # assumes light_id #2
-      front_left  = hue.add_light(:front_left)  # assumes light_id #3
-      # etc.
+  front_right = hue.add_light(:front_right) # assumes light_id #1
+  back_right  = hue.add_light(:back_right)  # assumes light_id #2
+  front_left  = hue.add_light(:front_left)  # assumes light_id #3
+  # etc.
 ```
+
 
 ### See Also
 * [http://rsmck.co.uk/hue](http://rsmck.co.uk/hue)
