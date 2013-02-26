@@ -1,18 +1,19 @@
 module PhilipsHue
   class Bridge
 
-    # creates a new app to talk to a Philips Hue
+    # creates an app through which to talk to a Philips Hue
+    # (new app names must be registered with the bridge)
     #   app_name is used to register with the Hue
-    #   api_url is the hostname/IP address of the Hue hockeypuck
+    #   api_url is the hostname/IP address of the bridge
     def initialize(app_name, api_url)
-      @name = app_name
-      @key = Digest::MD5.hexdigest(@name)
+      @app_name = app_name
+      @key = Digest::MD5.hexdigest(@app_name)
       @api_endpoint = "http://#{api_url}/api"
       @lights = add_all_lights
     end
 
     # provide getter methods for these variables
-    attr_reader :name, :key, :api_endpoint, :lights
+    attr_reader :app_name, :key, :api_endpoint, :lights
 
     # returns overall system status as JSON
     def overview
@@ -36,7 +37,7 @@ module PhilipsHue
     def register!
       puts "Press the link button on the Hue..."
       sleep 10
-      json_body = {:username => @key, :devicetype => @name}.to_json
+      json_body = {:username => @key, :devicetype => @app_name}.to_json
       response = HTTParty.post(@api_endpoint, :body => json_body)
 
       if response.first["error"] # should be response.code

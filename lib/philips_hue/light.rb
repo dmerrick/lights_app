@@ -3,14 +3,17 @@ module PhilipsHue
 
     def initialize(light_name, light_id, api_endpoint, key)
       @name = light_name
-      @id = light_id
-      @api_endpoint = api_endpoint
+      @light_id = light_id
       @key = key
+      @api_endpoint = api_endpoint
     end
+
+    # provide getter methods for these variables
+    attr_reader :name, :light_id
 
     # query full status for single light
     def status
-      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@id}"
+      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@light_id}"
       HTTParty.get(request_uri)
     end
 
@@ -18,7 +21,7 @@ module PhilipsHue
     # note that colormode will automagically update
     def set(options)
       json_body = options.to_json
-      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@id}/state"
+      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@light_id}/state"
       HTTParty.put(request_uri, :body => json_body)
     end
 
