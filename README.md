@@ -60,6 +60,7 @@ Some helper methods, including default color options, are provided. For example:
 
 
 ### See Also
+* [RubyGems homepage for this project](https://rubygems.org/gems/philips_hue)
 * [Official Philips Hue site](https://www.meethue.com/en-US)
 * [My original gist](https://gist.github.com/dmerrick/5000839)
 * [rsmck's hacking guide](http://rsmck.co.uk/hue)
