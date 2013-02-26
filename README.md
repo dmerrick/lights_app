@@ -58,6 +58,7 @@ Some default color methods are provided, for example:
 
 ### See Also
 * [Official Philips Hue site](https://www.meethue.com/en-US)
+* [My original gist](https://gist.github.com/dmerrick/5000839)
 * [rsmck's hacking guide](http://rsmck.co.uk/hue)
 * [Hue hackers' community site](http://www.everyhue.com/)
 * [Thorough API docs](http://blog.ef.net/2012/11/02/philips-hue-api.html)
