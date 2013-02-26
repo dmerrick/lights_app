@@ -14,10 +14,11 @@ class PhilipsHue
     @name = app_name
     @key = Digest::MD5.hexdigest(@name)
     @api_endpoint = "http://#{api_url}/api"
-
-    # auto-incrementing light_id
-    @light_id = 0
+    @lights = add_all_lights
   end
+
+  # provide getter methods for these variables
+  attr_reader :name, :key, :api_endpoint, :lights
 
   # returns overall system status as JSON
   def overview
@@ -25,10 +26,14 @@ class PhilipsHue
     HTTParty.get(request_uri)
   end
 
-  # creates a new Light object using auto-incrementing light_id
-  def add_light(light_name)
-    @light_id += 1
-    Light.new(light_name, @light_id, @api_endpoint, @key)
+  # creates a new Light object
+  def add_light(light_id, light_name)
+    Light.new(light_name, light_id, @api_endpoint, @key)
+  end
+
+  # helper method to get light by light_id
+  def light(light_id)
+    @lights[light_id-1]
   end
 
   #TODO: status(light_id) could be cool here
@@ -48,6 +53,16 @@ class PhilipsHue
     else
       return response
     end
+  end
+
+  private
+  # loop through the available lights and make corresponding objects
+  def add_all_lights
+    all_lights = []
+    overview["lights"].each do |id, light|
+      all_lights << add_light(id.to_i, light["name"])
+    end
+    all_lights
   end
 
 end
