@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # example: flash.rb -l 3 -t 5 -c red -n 3
 
+require 'rubygems'
 require 'ostruct'
 require 'optparse'
 require 'philips_hue'

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # this is a basic example of what you can do with this library
+require 'rubygems'
 require 'philips_hue'
 
 # set up your hue app here
