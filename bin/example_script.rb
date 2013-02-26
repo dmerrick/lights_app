@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # this is a basic example of what you can do with this library
-require_relative '../philips_hue'
+require 'philips_hue'
 
 # set up your hue app here
-hue = PhilipsHue.new("lightsapp", "192.168.1.14")
+hue = PhilipsHue::Bridge.new("lightsapp", "192.168.1.14")
 
 # assign each light to a variable
 light1, light2, light3 = hue.lights

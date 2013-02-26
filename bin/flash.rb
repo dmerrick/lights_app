@@ -3,8 +3,7 @@
 
 require 'ostruct'
 require 'optparse'
-
-require_relative '../philips_hue'
+require 'philips_hue'
 
 # set default values here
 colors = { "red"    => [0.6446, 0.3289],
@@ -43,7 +42,7 @@ OptionParser.new do |opts|
 end.parse!
 
 # get everything ready...
-hue = PhilipsHue.new(options.app_name, options.api_url)
+hue = PhilipsHue::Bridge.new(options.app_name, options.api_url)
 light = hue.light(options.light_id)
 old_xy = light.xy
 
