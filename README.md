@@ -20,32 +20,17 @@ Full example:
   hue.register!
 ```
 
-
-### Adding Lights
-
-To add lights, you can use `PhilipsHue#add_light`.
-
-* You must specify a name for the light, which can be either a String or a Symbol. Example: `"living room table"`, `:front_right`, `"kitchen ceiling"`, etc.
-* You should add the lights in order by their ID. See the Hue Community site or the mobile app for the correct order.
- 
-Full example:
-```ruby
-  front_right = hue.add_light(:front_right) # assumes light_id #1
-  back_right  = hue.add_light(:back_right)  # assumes light_id #2
-  front_left  = hue.add_light(:front_left)  # assumes light_id #3
-  # etc.
-```
-
 ### Getting the State of a Light
 
 There are many available status options in the `Light` class.
 
 ```ruby
-  puts front_right.state # returns JSON
-  puts front_right.colormode
-  puts front_right.xy
-  puts front_right
-  # => "Front Right is on and reachable"
+  light1 = hue.lights.first
+  puts light1.state # returns JSON
+  puts light1.colormode
+  puts light1.xy
+  puts light1
+  # => "Front right is on and reachable"
 ```
 
 
@@ -54,9 +39,9 @@ There are many available status options in the `Light` class.
 To change the state of a light, simply modify the value of one of the state parameters. For example:
 
 ```ruby
-  front_right.xy  = [0.6446, 0.3289]
-  front_right.ct  = 200   # note that the colormode changes
-  front_right.hue = 25000 # colormode changes again
+  light1.xy  = [0.6446, 0.3289]
+  light1.ct  = 200   # note that the colormode changes
+  light1.hue = 25000 # colormode changes again
   # etc.
 ```
 
@@ -65,9 +50,9 @@ To change the state of a light, simply modify the value of one of the state para
 Some default color methods are provided, for example:
 
 ```ruby
-  front_right.blue
-  back_right.red
-  front_left.green
+  light1.blue
+  light2.red
+  light3.green
 ```
 
 
