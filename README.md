@@ -45,14 +45,17 @@ To change the state of a light, simply modify the value of one of the state para
   # etc.
 ```
 
-#### Default Colors
+#### Helper Methods
 
-Some default color methods are provided, for example:
+Some helper methods, including default color options, are provided. For example:
 
 ```ruby
   light1.blue
   light2.red
   light3.green
+  light1.blip  # blink once
+  light2.blink # blink repeatedly
+  light3.flash([0.6446, 0.3289]) # flash red
 ```
 
 
