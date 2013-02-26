@@ -1,12 +1,8 @@
 #!/usr/bin/env ruby
-# this is a basic example of what you can do with this library
 require 'rubygems'
 require 'philips_hue'
 
-# set up your hue app here
 hue = PhilipsHue::Bridge.new("lightsapp", "192.168.1.14")
-
-# assign each light to a variable
 light1, light2, light3 = hue.lights
 
 # print status of light1
