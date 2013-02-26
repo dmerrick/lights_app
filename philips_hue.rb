@@ -33,7 +33,7 @@ class PhilipsHue
 
   # helper method to get light by light_id
   def light(light_id)
-    @lights[light_id-1]
+    @lights[light_id.to_i-1]
   end
 
   #TODO: status(light_id) could be cool here
