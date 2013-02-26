@@ -36,8 +36,6 @@ class PhilipsHue
     @lights[light_id.to_i-1]
   end
 
-  #TODO: status(light_id) could be cool here
-
   # registers your app with the Hue
   # this must be run for every unique app name
   # FIXME: this needs to be more adequately tested
