@@ -2,6 +2,7 @@ require 'httparty'
 require 'digest/md5'
 require 'json'
 
+require 'philips_hue/version'
 require 'philips_hue/bridge'
 require 'philips_hue/light'
 

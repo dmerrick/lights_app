@@ -1,5 +1,5 @@
 module PhilipsHue
-  class PhilipsHue::Light
+  class Light
 
     def initialize(light_name, light_id, api_endpoint, key)
       @name = light_name
