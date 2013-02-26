@@ -28,9 +28,19 @@ class Light
     status["state"]
   end
 
-  #TODO: can this be set-able?
+  # determine if the light is on or off
   def on?
     state["on"]
+  end
+
+  # turn on the light
+  def on!
+    set(:on => true)
+  end
+
+  # turn off the light
+  def off!
+    set(:on => false)
   end
 
   # whether or not the lamp can be seen by the hub
