@@ -1,0 +1,29 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    awesome_print (1.1.0)
+    coderay (1.0.9)
+    httparty (0.10.2)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    method_source (0.8.1)
+    multi_json (1.6.1)
+    multi_xml (0.5.3)
+    pry (0.9.12)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-doc (0.4.4)
+      pry (>= 0.9.9.6)
+      yard (~> 0.8.1)
+    slop (3.4.3)
+    yard (0.8.5.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  httparty
+  pry
+  pry-doc
