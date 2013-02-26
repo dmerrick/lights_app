@@ -4,7 +4,7 @@ This is a library for accessing and controlling your [Philips Hue](http://www.me
 
 #### TL;DR:
 
-[Check out the bin/ directory for examples](https://github.com/dmerrick/lights_app/tree/master/bin) of how to use this project and what kind of things you can do.
+Install with `gem install philips_hue`. [Check out the bin/ directory for examples](https://github.com/dmerrick/lights_app/tree/master/bin) of how to use this project and what kind of things you can do.
 
 
 ### Registering with the Bridge
