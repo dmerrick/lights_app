@@ -1,4 +1,4 @@
-require File.expand_path("../lib/philips_hue/version", __FILE__)
+require File.expand_path('../lib/philips_hue/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'philips_hue'
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.files       = Dir["{lib}/**/*.rb", "bin/*", "*.md"]
   s.homepage    = 'https://github.com/dmerrick/lights_app'
   s.extra_rdoc_files = ['README.md']
-  s.add_runtime_dependency "httparty", [">= 0.10.0"]
-  #s.post_install_message = ""
+  s.add_runtime_dependency 'httparty', ['>= 0.10.0']
+  #s.post_install_message = ''
 end
