@@ -159,6 +159,14 @@ class Light
     self.alert = "lselect"
   end
 
+  # flash a specified color
+  def flash(xy, delay = 1)
+    old_xy = self.xy
+    self.xy = xy
+    sleep delay
+    self.xy = old_xy
+  end
+
   # pretty-print the light's status
   def to_s
     pretty_name = @name.to_s.split(/_/).map(&:capitalize).join(" ")
