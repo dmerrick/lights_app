@@ -112,21 +112,22 @@ class Light
     set(:xy => value)
   end
 
-  #TODO: I have not tested this at all
   # 'select' will flash the lamp once
   # 'lselect' will flash the lamp repeatedly
+  # 'none' is the default state
   def alert
     state["alert"]
+  end
+
+  # set the alert state
+  def alert=(value)
+    set(:alert => value)
   end
 
   #TODO: figure out what this does (and if I can change it)
   def effect
     state["effect"]
   end
-
-  #TODO: add transitiontime()
-  # if specified (in 1/10s), will cause the light to change over the time set
-  # if set to 0 will result in a 'snap' and bypass the usual soft fade
 
   # cheap helper method
   def red
@@ -146,6 +147,16 @@ class Light
   # cheap helper method
   def yellow
     self.xy = [0.4447, 0.4918]
+  end
+
+  # flash once
+  def blip
+    self.alert = "select"
+  end
+
+  # flash repeatedly
+  def blink
+    self.alert = "lselect"
   end
 
   # pretty-print the light's status
