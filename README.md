@@ -49,7 +49,7 @@ There are many available status options in the `Light` class.
 ```
 
 
-### Changing the State of a Light
+### Changing the Color of a Light
 
 To change the state of a light, simply modify the value of one of the state parameters. For example:
 
