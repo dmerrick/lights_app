@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
+# example: flash.rb -l 3 -t 5 -c red -n 3
 
 require 'optparse'
-
-require 'pp'
-require 'awesome_print'
-require 'pry'
 
 require_relative '../philips_hue'
 
 # set default values here
-colors = {"red" => [0.6446, 0.3289], "blue" => [0.1727, 0.0512]}
+colors = { "red"    => [0.6446, 0.3289],
+           "blue"   => [0.1727, 0.0512],
+           "green"  => [0.4034, 0.5067],
+           "yellow" => [0.4447, 0.4918]}
 
 options = OpenStruct.new
 options.light_id = 1
@@ -39,8 +39,10 @@ end.parse!
 
 hue = PhilipsHue.new("lightsapp", "192.168.1.14")
 light = hue.light(options.light_id)
+old_xy = light.xy
 
 options.repeat.times do
   # flash!
-  light.flash(options.color, options.delay)
+  light.flash(options.color, :delay => options.delay, :old_xy => old_xy)
+  sleep options.delay
 end

@@ -160,8 +160,10 @@ class Light
   end
 
   # flash a specified color
-  def flash(xy, delay = 1)
-    old_xy = self.xy
+  # if you're flashing multiple times, specify :old_xy to minimize API calls
+  def flash(xy, options = {})
+    old_xy = options[:old_xy] || self.xy
+    delay = options[:delay] || 1
     self.xy = xy
     sleep delay
     self.xy = old_xy
