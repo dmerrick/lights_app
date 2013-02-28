@@ -9,11 +9,10 @@ module PhilipsHue
       @app_name = app_name
       @key = Digest::MD5.hexdigest(@app_name)
       @api_endpoint = "http://#{api_url}/api"
-      @lights = add_all_lights
     end
 
     # provide getter methods for these variables
-    attr_reader :app_name, :key, :api_endpoint, :lights
+    attr_reader :app_name, :key, :api_endpoint
 
     # returns overall system status as JSON
     def overview
@@ -26,26 +25,43 @@ module PhilipsHue
       Light.new(light_name, light_id, @api_endpoint, @key)
     end
 
+    # return the lights array or add them it if needed
+    def lights
+      @lights ||= add_all_lights
+    end
+
     # helper method to get light by light_id
     def light(light_id)
       @lights[light_id.to_i-1]
     end
 
     # registers your app with the Hue
-    # this must be run for every unique app name
-    # FIXME: this needs to be more adequately tested
-    def register!
+    # this must be run for every new app name
+    def self.register(app_name, api_url)
       puts "Press the link button on the Hue..."
-      sleep 10
-      json_body = {:username => @key, :devicetype => @app_name}.to_json
-      response = HTTParty.post(@api_endpoint, :body => json_body)
 
-      if response.first["error"] # should be response.code
-        puts "Press link button and try again."
-        exit
-      else
-        return response
+      # pretty countdown
+      10.downto(1) do |n|
+        print n
+        sleep 1
+        print n == 1 ? "\r" : ", "
       end
+
+      # create a new bridge and submit a special POST request
+      new_bridge = self.new(app_name, api_url)
+      json_body = { :username => new_bridge.key, :devicetype => new_bridge.app_name}.to_json
+      response = HTTParty.post(new_bridge.api_endpoint, :body => json_body)
+
+      # quit if it didn't work (link button wasn't pressed)
+      abort "Press link button and try again." if response.first["error"]
+
+      # return the now-registered bridge
+      new_bridge
+    end
+
+    # human-readable bridge summary
+    def to_s
+      "#{app_name}: #{api_endpoint}"
     end
 
     private
