@@ -1,5 +1,6 @@
 require 'digest/md5'
 require 'httparty'
+require 'json'
 
 require 'philips_hue/version'
 require 'philips_hue/bridge'

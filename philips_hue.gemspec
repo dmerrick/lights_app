@@ -13,5 +13,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/dmerrick/lights_app'
   s.extra_rdoc_files = ['README.md']
   s.add_runtime_dependency 'httparty', ['>= 0.10.0']
+  s.add_runtime_dependency 'json', ['>= 1.6']
   #s.post_install_message = ''
 end
