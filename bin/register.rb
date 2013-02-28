@@ -25,5 +25,10 @@ end.parse!
 # register the app with the hue bridge
 # get ready to press the link button!
 hue = PhilipsHue::Bridge.register(options[:app_name], options[:api_url])
+
+# it worked!
+# print some friendly info
+puts
 puts "Success!"
 puts hue
+puts hue.lights.first
