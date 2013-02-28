@@ -34,10 +34,10 @@ OptionParser.new do |opts|
   opts.on("-n [number]", Integer, "Repeat [number] times") do |num|
     options.repeat = num
   end
-  opts.on("--app [app_name]", "The name of the registered app") do |app|
+  opts.on("-a [app_name]","--app [app_name]", "The name of the registered app") do |app|
     options.app_name = app
   end
-  opts.on("--api [url]", "The address of the Hue hub") do |api|
+  opts.on("-b [addr]","--bridge [addr]", "The address of the Hue bridge") do |api|
     options.api_url = api
   end
 end.parse!
