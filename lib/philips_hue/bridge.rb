@@ -32,7 +32,7 @@ module PhilipsHue
 
     # helper method to get light by light_id
     def light(light_id)
-      @lights[light_id.to_i-1]
+      self.lights[light_id.to_i-1]
     end
 
     # registers your app with the Hue
