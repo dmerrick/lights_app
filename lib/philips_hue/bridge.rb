@@ -44,7 +44,7 @@ module PhilipsHue
       10.downto(1) do |n|
         print n
         sleep 1
-        print n == 1 ? "\r" : ", "
+        print n == 1 ? "\r#{' '*30}\r" : ", "
       end
 
       # create a new bridge and submit a special POST request
