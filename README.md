@@ -12,12 +12,12 @@ Install with `gem install philips_hue`. [Check out the bin/ directory for exampl
 You need two things to connect with your Hue, a name for your app and the IP address of the white Hue bridge.
 
 * The IP address can be found on the Hue Community site. Login, [go here](https://www.meethue.com/en-US/user/preferencessmartbridge), click "Show me more," and find the IP under "Internal IP address." Example: `"192.168.1.14"`
-* The app name can be anything you like. You must register your app with the Hue by running `PhilipsHue#register!` and pressing the button on the bridge. You must do this again for every new app name you create. Example: `"my light app"`
+* The app name can be anything you like. You must register your app with the Hue by running `PhilipsHue#register` and pressing the button on the bridge. You must do this again for every new app name you create. Example: `"my light app"`
+* Skip this step by running the [bin/register.rb](https://github.com/dmerrick/lights_app/blob/master/bin/register.rb) script.
 
-Full example:
+For example:
 ```ruby
-  hue = PhilipsHue::Bridge.new("my light app", "192.168.1.14")
-  hue.register!
+  PhilipsHue::Bridge.register("my light app", "192.168.1.14")
 ```
 
 ### Getting the State of a Light
@@ -25,11 +25,12 @@ Full example:
 There are many available status options in the `Light` class.
 
 ```ruby
-  light1 = hue.lights.first
-  puts light1.state # returns JSON
+  hue = PhilipsHue::Bridge.new("my light app", "192.168.1.14")
+  light1, light2, light3 = hue.lights
+  puts light1.state
   puts light1.colormode
-  puts light1.xy
-  puts light1
+  puts light2.bri
+  puts light3
   # => "Front right is on and reachable"
 ```
 
@@ -40,8 +41,8 @@ To change the state of a light, simply modify the value of one of the state para
 
 ```ruby
   light1.xy  = [0.6446, 0.3289]
-  light1.ct  = 200   # note that the colormode changes
-  light1.hue = 25000 # colormode changes again
+  light1.ct  = 200
+  light1.hue = 25000
   # etc.
 ```
 
