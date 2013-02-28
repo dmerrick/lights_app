@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    philips_hue (0.1.6)
+      httparty (>= 0.10.0)
+      json (>= 1.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -6,6 +13,7 @@ GEM
     httparty (0.10.2)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
+    json (1.7.7)
     method_source (0.8.1)
     multi_json (1.6.1)
     multi_xml (0.5.3)
@@ -13,17 +21,12 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-doc (0.4.4)
-      pry (>= 0.9.9.6)
-      yard (~> 0.8.1)
     slop (3.4.3)
-    yard (0.8.5.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   awesome_print
-  httparty
+  philips_hue!
   pry
-  pry-doc
