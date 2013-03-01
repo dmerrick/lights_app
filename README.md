@@ -29,7 +29,7 @@ There are many available status options in the `Light` class.
   light1, light2, light3 = hue.lights
   puts light1.state
   puts light1.colormode
-  puts light2.bri
+  puts light2.brightness
   puts light3
   # => "Front right is on and reachable"
 ```
@@ -48,7 +48,7 @@ To change the state of a light, simply modify the value of one of the state para
 
 #### Helper Methods
 
-Some helper methods, including default color options, are provided. For example:
+Some [helper methods](https://github.com/dmerrick/lights_app/blob/master/lib/philips_hue/helpers.rb), including default color options, are provided. For example:
 
 ```ruby
   light1.blue
