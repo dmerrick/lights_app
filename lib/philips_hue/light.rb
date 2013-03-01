@@ -196,6 +196,7 @@ module PhilipsHue
     # handy aliases
     alias_method :brightness, :bri
     alias_method :brightness=, :bri=
+    alias_method :mode, :colormode
     alias_method :saturation, :sat
     alias_method :saturation=, :sat=
     alias_method :temperature, :ct
