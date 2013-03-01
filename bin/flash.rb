@@ -16,6 +16,7 @@ options = OpenStruct.new
 options.light_id = 1
 options.delay    = 1
 options.repeat   = 1
+options.crazy    = false
 options.color    = colors["red"]
 options.app_name = "lightsapp"
 options.api_url  = "192.168.1.14"
@@ -40,6 +41,9 @@ OptionParser.new do |opts|
   opts.on("-n [num]", "--repeat [num]", Integer, "Repeat [num] times") do |num|
     options.repeat = num
   end
+  opts.on("-z", "--crazymode", "Enable crazymode") do |crazy|
+    options.crazy = crazy
+  end
 end.parse!
 
 # get everything ready...
@@ -48,6 +52,6 @@ light = hue.light(options.light_id)
 
 # ...make magic happen
 options.repeat.times do
-  light.flash(options.color, options.delay)
+  light.flash(options.color, options.delay, options.crazy)
   sleep options.delay
 end
