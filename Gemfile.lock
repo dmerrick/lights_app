@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    philips_hue (0.1.8)
+    philips_hue (0.1.9)
       httparty (>= 0.10.0)
       json (>= 1.6)
 
@@ -21,6 +21,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rake (10.0.2)
     slop (3.4.3)
 
 PLATFORMS
@@ -30,3 +31,4 @@ DEPENDENCIES
   awesome_print
   philips_hue!
   pry
+  rake
