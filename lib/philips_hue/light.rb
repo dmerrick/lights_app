@@ -170,24 +170,23 @@ module PhilipsHue
       original = self.state
 
       # turns the light on and maxes brightness too
-      flash_state = { :xy  => xy,
-                      :on  => true,
-                      :bri => 255 }
+      flash_state = {
+        :xy  => xy,
+        :on  => true,
+        :bri => 255
+      }
 
       # blink repeatedly if crazymode flag is set
-      # (works best for delay >3 seconds)
+      # (works best for delay >2 seconds)
       flash_state["alert"] = "lselect" if crazymode
 
-      # flash!
-      set(flash_state)
-
-      # zzz...
-      sleep delay
-
       # the state to which to restore
-      final_state = { :on => original["on"],
-                      :bri => original["bri"],
-                      :alert => original["alert"] }
+      # (color gets set after)
+      final_state = {
+        :on => original["on"],
+        :bri => original["bri"],
+        :alert => original["alert"]
+      }
 
       # smartly return to the original color
       case original["colormode"]
@@ -199,6 +198,10 @@ module PhilipsHue
         final_state[:hue] = original["hue"]
       end
 
+      # flash!
+      set(flash_state)
+      # zzz...
+      sleep delay
       # restore the light to its original state
       set(final_state)
     end
