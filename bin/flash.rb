@@ -51,7 +51,7 @@ hue = PhilipsHue::Bridge.new(options.app_name, options.api_url)
 light = hue.light(options.light_id)
 
 # ...make magic happen
-options.repeat.times do
+options.repeat.times do |n|
   light.flash(options.color, options.delay, options.crazy)
-  sleep options.delay
+  sleep options.delay unless n == options.repeat-1
 end
