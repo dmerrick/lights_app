@@ -164,18 +164,32 @@ module PhilipsHue
     # flash a specified color
     def flash(xy, delay = 1)
       # use state() and set() to minimize number of API calls
-      start = self.state
+      original = self.state
+
       # ensures that the light will turn on if it was off
-      flash_state = { :xy => xy,
-                      :on => true,
+      flash_state = { :xy  => xy,
+                      :on  => true,
                       :bri => 255 }
       set(flash_state)
+
       # zzz...
       sleep delay
+
+      # the state to which to restore
+      final_state = { :on  => original["on"],
+                      :bri => original["bri"] }
+
+      # smartly return to the original color
+      case original["colormode"]
+      when "xy"
+        final_state[:xy]  = original["xy"]
+      when "ct"
+        final_state[:ct]  = original["ct"]
+      when "hs"
+        final_state[:hue] = original["hue"]
+      end
+
       # restore the light to its original state
-      final_state = { :xy => start["xy"],
-                      :on => start["on"],
-                      :bri => start["bri"] }
       set(final_state)
     end
 
