@@ -59,6 +59,9 @@ module PhilipsHue
       new_bridge
     end
 
+    # handy alias
+    alias_method :status, :overview
+
     # human-readable bridge summary
     def to_s
       "#{app_name}: #{api_endpoint}"
