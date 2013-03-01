@@ -3,6 +3,8 @@ require 'httparty'
 require 'json'
 
 require 'philips_hue/version'
+require 'philips_hue/helpers'
+
 require 'philips_hue/bridge'
 require 'philips_hue/light'
 
