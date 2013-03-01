@@ -162,13 +162,15 @@ module PhilipsHue
     end
 
     # flash a specified color
-    # if you're flashing multiple times, specify :old_xy to minimize API calls
-    def flash(xy, options = {})
-      old_xy = options[:old_xy] || self.xy
-      delay = options[:delay] || 1
-      self.xy = xy
+    def flash(xy, delay = 1)
+      # use state() and set() to minimize number of API calls
+      start = self.state
+      # ensures that the light will turn on if it was off
+      set(:xy => xy, :on => true)
+      # zzz...
       sleep delay
-      self.xy = old_xy
+      # restore the light to its original state
+      set(:xy => start["xy"], :on => start["on"])
     end
 
     # pretty-print the light's status

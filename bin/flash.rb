@@ -45,11 +45,9 @@ end.parse!
 # get everything ready...
 hue = PhilipsHue::Bridge.new(options.app_name, options.api_url)
 light = hue.light(options.light_id)
-old_xy = light.xy
 
 # ...make magic happen
 options.repeat.times do
-  # flash!
-  light.flash(options.color, :delay => options.delay, :old_xy => old_xy)
+  light.flash(options.color, options.delay)
   sleep options.delay
 end
