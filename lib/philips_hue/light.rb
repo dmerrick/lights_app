@@ -162,11 +162,14 @@ module PhilipsHue
     end
 
     # flash a specified color
+    #  xy is the color to use
+    #  delay is the length of the flash (in seconds)
+    #  crazymode causes the light to blink during the flash
     def flash(xy, delay = 1, crazymode = false)
       # use state() and set() to minimize number of API calls
       original = self.state
 
-      # ensures that the light will turn on if it was off
+      # turns the light on and maxes brightness too
       flash_state = { :xy  => xy,
                       :on  => true,
                       :bri => 255 }
@@ -174,6 +177,8 @@ module PhilipsHue
       # blink repeatedly if crazymode flag is set
       # (works best for delay >3 seconds)
       flash_state["alert"] = "lselect" if crazymode
+
+      # flash!
       set(flash_state)
 
       # zzz...
