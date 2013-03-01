@@ -176,6 +176,11 @@ module PhilipsHue
         :bri => 255
       }
 
+      # blink instead if the color is not going to change
+      if xy == original["xy"] && original["colormode"] == "xy"
+        flash_state["alert"] = "select"
+      end
+
       # blink repeatedly if crazymode flag is set
       # (works best for delay >2 seconds)
       flash_state["alert"] = "lselect" if crazymode
