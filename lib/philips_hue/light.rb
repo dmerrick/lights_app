@@ -166,11 +166,17 @@ module PhilipsHue
       # use state() and set() to minimize number of API calls
       start = self.state
       # ensures that the light will turn on if it was off
-      set(:xy => xy, :on => true)
+      flash_state = { :xy => xy,
+                      :on => true,
+                      :bri => 255 }
+      set(flash_state)
       # zzz...
       sleep delay
       # restore the light to its original state
-      set(:xy => start["xy"], :on => start["on"])
+      final_state = { :xy => start["xy"],
+                      :on => start["on"],
+                      :bri => start["bri"] }
+      set(final_state)
     end
 
     # handy aliases
