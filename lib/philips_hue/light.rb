@@ -173,6 +173,16 @@ module PhilipsHue
       set(:xy => start["xy"], :on => start["on"])
     end
 
+    # handy aliases
+    alias_method :brightness, :bri
+    alias_method :brightness=, :bri=
+    alias_method :saturation, :sat
+    alias_method :saturation=, :sat=
+    alias_method :temperature, :ct
+    alias_method :temperature=, :ct=
+    alias_method :color_temperature, :ct
+    alias_method :color_temperature=, :ct=
+
     # pretty-print the light's status
     def to_s
       pretty_name = @name.to_s.split(/_/).map(&:capitalize).join(" ")
