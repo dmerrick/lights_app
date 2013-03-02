@@ -22,7 +22,7 @@ options.app_name = "lightsapp"
 options.api_url  = "192.168.1.14"
 
 OptionParser.new do |opts|
-  opts.banner = "Usage: flash.rb [options]"
+  opts.banner = "Usage: #{opts.program_name} [options]"
   opts.on("-a [app_name]","--app [app_name]", "The name of the registered app") do |app|
     options.app_name = app
   end
