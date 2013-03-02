@@ -1,11 +1,14 @@
 module PhilipsHue
   class Bridge
 
+    # if no app_name is specified, use this one
+    DEFAULT_APP_NAME = "lightsapp"
+
     # creates an app through which to talk to a Philips Hue
     # (new app names must be registered with the bridge)
+    #   api_url is the hostname or IP address of the bridge
     #   app_name is used to register with the Hue
-    #   api_url is the hostname/IP address of the bridge
-    def initialize(app_name, api_url)
+    def initialize(api_url, app_name = DEFAULT_APP_NAME)
       @app_name = app_name
       @key = Digest::MD5.hexdigest(@app_name)
       @api_endpoint = "http://#{api_url}/api"
@@ -52,7 +55,7 @@ module PhilipsHue
 
     # registers your app with the Hue
     # this must be run for every new app name
-    def self.register(app_name, api_url)
+    def self.register(api_url, app_name = DEFAULT_APP_NAME)
       puts "Press the link button on the Hue..."
 
       # pretty countdown
@@ -63,7 +66,7 @@ module PhilipsHue
       end
 
       # create a new bridge and submit a special POST request
-      new_bridge = self.new(app_name, api_url)
+      new_bridge = self.new(api_url, app_name)
       json_body = { :username => new_bridge.key, :devicetype => new_bridge.app_name}.to_json
       response = HTTParty.post(new_bridge.api_endpoint, :body => json_body)
 
