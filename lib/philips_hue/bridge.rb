@@ -14,10 +14,25 @@ module PhilipsHue
     # provide getter methods for these variables
     attr_reader :app_name, :key, :api_endpoint
 
-    # returns overall system status as JSON
+    # returns overall system status
     def overview
       request_uri = "#{@api_endpoint}/#{@key}"
       HTTParty.get(request_uri)
+    end
+
+    # returns information about the bridge
+    def config
+      overview["config"]
+    end
+
+    # returns the bridge's name
+    def name
+      config["name"]
+    end
+
+    # returns the currently running software version
+    def swversion
+      config["swversion"]
     end
 
     # creates a new Light object
@@ -25,7 +40,7 @@ module PhilipsHue
       Light.new(light_name, light_id, @api_endpoint, @key)
     end
 
-    # return the lights array or add them it if needed
+    # return the lights array or add them if needed
     def lights
       @lights ||= add_all_lights
     end
@@ -59,12 +74,65 @@ module PhilipsHue
       new_bridge
     end
 
-    # handy alias
+    # a list of all of the registered apps
+    def whitelist
+      config["whitelist"]
+    end
+
+    #TODO: test me
+    # returns true if the link button has been pressed recently
+    def linkbutton
+      config["linkbutton"]
+    end
+
+    # returns the IP address
+    # n.b. api_endpoint doesn't require an API call
+    def ipaddress
+      config["ipaddress"]
+    end
+
+    # returns true if DHCP is enabled
+    def dhcp?
+      config["dhcp"]
+    end
+
+    # returns the gateway
+    def gateway
+      config["gateway"]
+    end
+
+    # returns the netmask
+    def netmask
+      config["netmask"]
+    end
+
+    # returns the MAC address
+    def mac
+      config["mac"]
+    end
+
+    # returns the proxy address, if set.
+    # otherwise returns " "
+    def proxyaddress
+      config["proxyaddress"]
+    end
+
+    # returns the proxy port, if set.
+    # otherwise returns 0
+    def proxyport
+      config["proxyport"]
+    end
+
+    # handy aliases
     alias_method :status, :overview
+    alias_method :configuration, :config
+    alias_method :apps, :whitelist
+    alias_method :version, :swversion
+    alias_method :ip, :ipaddress
 
     # human-readable bridge summary
     def to_s
-      "#{app_name}: #{api_endpoint}"
+      "Connected to #{self.name} (#{api_endpoint}) via #{app_name}"
     end
 
     private
