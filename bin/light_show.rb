@@ -5,12 +5,6 @@ require 'philips_hue'
 hue = PhilipsHue::Bridge.new("lightsapp", "192.168.1.14")
 light1, light2, light3 = hue.lights
 
-# print status of light1
-puts light1
-
-# true if we want to have a colorful party
-looping = true
-
 # loop pretty colors
 loop do
 
@@ -32,4 +26,4 @@ loop do
 
   sleep 1
 
-end if looping
+end
