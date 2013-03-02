@@ -52,6 +52,7 @@ light = hue.light(options.light_id)
 
 # ...make magic happen
 options.repeat.times do |n|
+  puts "flashing light ##{options.light_id}"
   light.flash(options.color, options.delay, options.crazy)
   sleep options.delay unless options.repeat == n+1
 end
