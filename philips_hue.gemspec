@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.extra_rdoc_files = ['README.md']
   s.add_runtime_dependency 'httparty', ['>= 0.10.0']
-  s.add_runtime_dependency 'json', ['>= 1.6']
+  s.add_runtime_dependency 'json_pure', ['>= 1.6']
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'rake'
