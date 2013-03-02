@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.email       = 'dana.merrick@gmail.com'
   s.files       = `git ls-files`.split("\n")
   s.homepage    = 'https://github.com/dmerrick/lights_app'
+  s.license     = 'MIT'
   s.extra_rdoc_files = ['README.md']
   s.add_runtime_dependency 'httparty', ['>= 0.10.0']
   s.add_runtime_dependency 'json', ['>= 1.6']
