@@ -10,8 +10,10 @@ require 'rubygems'
 require 'optparse'
 require 'philips_hue'
 
+# set the defaults
+options = { :app_name => PhilipsHue::Bridge::DEFAULT_APP_NAME }
+
 # parse the command line options
-options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: register.rb [options]"
   opts.on("-a [app_name]","--app [app_name]", "The name of the app to register") do |app|
@@ -24,7 +26,7 @@ end.parse!
 
 # register the app with the hue bridge
 # get ready to press the link button!
-hue = PhilipsHue::Bridge.register(options[:app_name], options[:api_url])
+hue = PhilipsHue::Bridge.register(options[:api_url], options[:app_name])
 
 # it worked!
 # print some friendly info

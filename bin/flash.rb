@@ -18,7 +18,7 @@ options.delay    = 1
 options.repeat   = 1
 options.crazy    = false
 options.color    = colors["red"]
-options.app_name = "lightsapp"
+options.app_name = PhilipsHue::Bridge::DEFAULT_APP_NAME
 options.api_url  = "192.168.1.14"
 
 OptionParser.new do |opts|
@@ -47,7 +47,7 @@ OptionParser.new do |opts|
 end.parse!
 
 # get everything ready...
-hue = PhilipsHue::Bridge.new(options.app_name, options.api_url)
+hue = PhilipsHue::Bridge.new(options.api_url, options.app_name)
 light = hue.light(options.light_id)
 
 # ...make magic happen
