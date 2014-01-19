@@ -19,8 +19,7 @@ module PhilipsHue
 
     # returns overall system status
     def overview
-      request_uri = "#{@api_endpoint}/#{@key}"
-      HTTParty.get(request_uri)
+      HTTParty.get(resource_uri)
     end
 
     # returns information about the bridge
@@ -38,19 +37,14 @@ module PhilipsHue
       config["swversion"]
     end
 
-    # creates a new Light object
-    def add_light(light_id, light_name)
-      Light.new(light_name, light_id, @api_endpoint, @key)
-    end
-
     # return the lights array or add them if needed
     def lights
-      @lights ||= add_all_lights
+      @lights ||= Lights.new(resource_uri, overview["lights"])
     end
 
     # helper method to get light by light_id
     def light(light_id)
-      self.lights[light_id.to_i-1]
+      lights.find(light_id)
     end
 
     # registers your app with the Hue
@@ -139,14 +133,9 @@ module PhilipsHue
     end
 
     private
-    # loop through the available lights and make corresponding objects
-    def add_all_lights
-      all_lights = []
-      overview["lights"].each do |id, light|
-        all_lights << add_light(id.to_i, light["name"])
-      end
-      all_lights
-    end
 
+    def resource_uri
+      "#{@api_endpoint}/#{@key}"
+    end
   end
 end

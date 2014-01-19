@@ -1,5 +1,4 @@
-module PhilipsHue::Helpers
-
+module PhilipsHue::Light::Helpers
   def red
     self.xy = [0.6446, 0.3289]
   end
