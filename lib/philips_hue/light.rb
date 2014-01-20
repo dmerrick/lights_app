@@ -1,36 +1,37 @@
 module PhilipsHue
   class Light
+    autoload :Helpers, "philips_hue/light/helpers"
 
     include Helpers
 
-    def initialize(light_name, light_id, api_endpoint, key)
-      @name = light_name
-      @light_id = light_id
-      @key = key
-      @api_endpoint = api_endpoint
-    end
+    attr_reader :resource_uri, :name, :id
 
-    # provide getter methods for these variables
-    attr_reader :name, :light_id
+    def initialize(base_uri, id, data)
+      @resource_uri = base_uri + "/#{id}"
+      @id = id
+      @name = data["name"]
+    end
 
     # query full status for single light
     def status
-      HTTParty.get(base_request_uri)
+      HTTParty.get(resource_uri)
     end
 
     # change the state of a light
     # note that colormode will automagically update
     def set(options)
-      json_body = options.to_json
-      request_uri = "#{base_request_uri}/state"
-      HTTParty.put(request_uri, :body => json_body)
+      put "#{resource_uri}/state", options
     end
 
     # change the name of the light
-    def rename(new_name)
-      json_body = { :name => new_name }.to_json
-      HTTParty.put(base_request_uri, :body => json_body)
-      @name = new_name
+    def name=(value)
+      @name = value
+      put resource_uri, name: value
+    end
+
+    # a version of the name cleansed to be used as a ruby method name or symbol
+    def underscored_name
+      name.gsub(" ", "_").gsub(/[^\w]/, "").downcase
     end
 
     # current state of the light
@@ -160,8 +161,8 @@ module PhilipsHue
 
     private
 
-    def base_request_uri
-      "#{@api_endpoint}/#{@key}/lights/#{@light_id}"
+    def put(uri, data)
+      HTTParty.put(uri, body: data.to_json)
     end
   end
 end
