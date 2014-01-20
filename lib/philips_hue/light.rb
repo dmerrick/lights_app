@@ -15,16 +15,22 @@ module PhilipsHue
 
     # query full status for single light
     def status
-      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@light_id}"
-      HTTParty.get(request_uri)
+      HTTParty.get(base_request_uri)
     end
 
     # change the state of a light
     # note that colormode will automagically update
     def set(options)
       json_body = options.to_json
-      request_uri = "#{@api_endpoint}/#{@key}/lights/#{@light_id}/state"
+      request_uri = "#{base_request_uri}/state"
       HTTParty.put(request_uri, :body => json_body)
+    end
+
+    # change the name of the light
+    def rename(new_name)
+      json_body = { :name => new_name }.to_json
+      HTTParty.put(base_request_uri, :body => json_body)
+      @name = new_name
     end
 
     # current state of the light
@@ -150,6 +156,12 @@ module PhilipsHue
       on_or_off = on? ? "on" : "off"
       reachable = reachable? ? "reachable" : "unreachable"
       "#{pretty_name} is #{on_or_off} and #{reachable}"
+    end
+
+    private
+
+    def base_request_uri
+      "#{@api_endpoint}/#{@key}/lights/#{@light_id}"
     end
   end
 end
