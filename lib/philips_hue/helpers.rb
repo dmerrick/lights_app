@@ -1,4 +1,32 @@
+def EnhanceColor(normalized)
+normalized > 0.04045 ? ((normalized + 0.055) / (1.0 + 0.055)) ** 2.4 : normalized / 12.92
+end
+
 module PhilipsHue::Helpers
+
+
+def RGB(r, g, b)
+  rNorm = r / 255.0
+  gNorm = g / 255.0
+  bNorm = b / 255.0
+
+  rFinal = EnhanceColor(rNorm)
+  gFinal = EnhanceColor(gNorm)
+  bFinal = EnhanceColor(bNorm)
+
+  x = rFinal * 0.649926 + gFinal * 0.103455 + bFinal * 0.197109
+  y = rFinal * 0.234327 + gFinal * 0.743075 + bFinal * 0.022598
+  z = rFinal * 0.000000 + gFinal * 0.053077 + bFinal * 1.035763
+
+    if x + y + z == 0
+      self.xy = [0,0]
+    else
+      xFinal = x / (x + y + z)
+      yFinal = y / (x + y + z)
+      self.xy = [xFinal, yFinal]
+    end
+  end
+
 
   def red
     self.xy = [0.6446, 0.3289]
@@ -14,6 +42,10 @@ module PhilipsHue::Helpers
 
   def yellow
     self.xy = [0.4447, 0.4918]
+  end
+
+  def white
+    self.xy = [0.3127301082804434, 0.3290198826715099]
   end
 
   # flash once
@@ -76,3 +108,4 @@ module PhilipsHue::Helpers
     set(final_state)
   end
 end
+
