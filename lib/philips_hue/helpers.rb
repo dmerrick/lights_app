@@ -1,22 +1,21 @@
 def EnhanceColor(normalized)
-normalized > 0.04045 ? ((normalized + 0.055) / (1.0 + 0.055)) ** 2.4 : normalized / 12.92
+  normalized > 0.04045 ? ((normalized + 0.055) / (1.0 + 0.055)) ** 2.4 : normalized / 12.92
 end
 
 module PhilipsHue::Helpers
 
-
-def RGB(r, g, b)
-  rNorm = r / 255.0
-  gNorm = g / 255.0
-  bNorm = b / 255.0
-
-  rFinal = EnhanceColor(rNorm)
-  gFinal = EnhanceColor(gNorm)
-  bFinal = EnhanceColor(bNorm)
-
-  x = rFinal * 0.649926 + gFinal * 0.103455 + bFinal * 0.197109
-  y = rFinal * 0.234327 + gFinal * 0.743075 + bFinal * 0.022598
-  z = rFinal * 0.000000 + gFinal * 0.053077 + bFinal * 1.035763
+  def RGB(r, g, b)
+    rNorm = r / 255.0
+    gNorm = g / 255.0
+    bNorm = b / 255.0
+  
+    rFinal = EnhanceColor(rNorm)
+    gFinal = EnhanceColor(gNorm)
+    bFinal = EnhanceColor(bNorm)
+  
+    x = rFinal * 0.649926 + gFinal * 0.103455 + bFinal * 0.197109
+    y = rFinal * 0.234327 + gFinal * 0.743075 + bFinal * 0.022598
+    z = rFinal * 0.000000 + gFinal * 0.053077 + bFinal * 1.035763
 
     if x + y + z == 0
       self.xy = [0,0]
