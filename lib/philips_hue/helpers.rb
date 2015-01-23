@@ -44,6 +44,27 @@ module PhilipsHue::Helpers
     self.xy = [0.3127301082804434, 0.3290198826715099]
   end
 
+  # default scenes from Hue app
+  def reading                  
+    self.xy = [0.4448, 0.4066] 
+    self.bri = 240             
+  end                          
+
+  def relax                    
+    self.xy = [0.5119, 0.4147] 
+    self.bri = 144             
+  end                          
+
+  def energize                 
+    self.xy = [0.3151, 0.3252] 
+    self.bri = 203             
+  end                          
+
+  def concentrate              
+    self.xy = [0.368, 0.3686]  
+    self.bri = 219             
+  end
+  
   # flash once
   def blip
     self.alert = "select"
